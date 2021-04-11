@@ -1,0 +1,40 @@
+.display_contact
+{
+    box-sizing: border-box;
+    width:394px;
+    margin:54px 0 0 100px;
+
+
+    h3
+    {
+    font-size:24px;
+    margin:0 0 8px 0;
+    font-weight:550;
+    }
+
+    ul
+     {
+    margin:0;
+    padding:0;
+     
+
+    li
+    {
+    list-style-type: none;
+    margin:10px 0 0 0;
+    }
+}
+
+}
+
+
+
+
+
+
+
+#d-pin-code,#d-state
+{
+    display:block;
+    margin:5px 0 0 64px;
+}

@@ -1,0 +1,56 @@
+
+
+
+<div class="row">
+
+
+    <div class="col-sm-2">
+
+        <app-contactsview></app-contactsview>
+
+    </div>
+
+
+    <div class="col-sm-4">
+        
+        <app-formpopup 
+                  *ngIf="this.showEditForm" 
+                  [showeditform]="showEditForm" 
+                  (showeditformChange)="showEditForm=$event" 
+                   [displayicons]="displayicons" 
+                   (displayiconsChange)="displayicons=$displayicons">
+        </app-formpopup>
+
+       <app-displaay-active-contact 
+                  *ngIf="!this.showEditForm && !this.isempty">
+        </app-displaay-active-contact>
+
+       <div *ngIf="this.isempty">
+                <p style="text-align:center"><img src="./assets/search1.png" alt=""></p>       
+       </div>
+
+    </div>
+
+    <div class="col-sm-6" 
+            *ngIf="!this.isempty && !showEditForm">
+
+        <div class="actions" id="actions">
+
+            <span href="" id="edit_action" (click)="editfunc()">
+                <img src="./assets/Edit-icon.png" alt="" height="17px">
+                <span id="edit">EDIT</span>
+            </span> 
+
+             <span href="" id="delete_action" (click)="deletefunc()">
+                 <img src="./assets/delete2.png" alt="">
+                 <span id="delete">DELETE</span>
+             </span>
+
+         </div>
+
+         
+    </div>
+    
+</div>
+
+
