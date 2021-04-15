@@ -1,0 +1,1 @@
+export * from './contactsdata.service';

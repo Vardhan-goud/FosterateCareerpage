@@ -1,0 +1,44 @@
+
+$cursortype:pointer;
+$flex:inline-flex;
+
+
+
+:host
+{
+    width:100%;
+}
+
+.row
+{
+    margin:0;
+}
+
+
+#actions
+{
+    display:$flex;
+    margin:61px 0 0 0;
+
+
+          span
+           {
+    
+              color:black;
+              font-size:16px;
+              cursor:$cursortype;
+
+                       img
+                         {
+                             display:$flex;
+                             padding:0 6px 0 5px;
+                          }
+           }
+}
+
+.empty-img
+{
+    display:inline-block;
+    margin-left: 500px;
+    
+}

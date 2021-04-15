@@ -1,0 +1,33 @@
+<div class='pop_up'>
+
+    <form action="" id="frm" [formGroup]="contactform" (ngSubmit)="showdata()">
+
+              <label for="Name" id="namelabel">Name<span class="imp">*
+                <span class="errormessage" *ngIf='!this.contactform.valid'>{{formerrors.name}}</span>
+              </span></label><br>
+              <input type="text" id="name" formControlName="name"><br>
+              
+              <label for="Email">Email<span class="imp">*
+                <span class="errormessage" *ngIf='!this.contactform.valid'>{{formerrors.email}}</span>
+              </span></label><br>
+              <input type="email"  id="email" formControlName="email"><br>
+   
+              <span id="mobilecontainer"><label for="Moblie">Mobile<span class="imp">*
+                <span class="errormessage" *ngIf='!this.contactform.valid'>{{formerrors.mobile}}</span>
+              </span></label><br>
+               <input type="number" formControlName="mobile"  id="mobile" ><br></span>
+   
+              <span id="landlinecontainer"><label for="Landline" id="landlinelabel">Landline</label><br>
+               <input type="number" formControlName="landline" id="landline"><br></span><br>
+              
+              <label for="Website">Website</label><br>
+              <input type="text" name="Website" id="website" formControlName="website"><br>
+   
+              <label for="Address">Address</label><br>
+              <input type="text" id="address" formControlName="address"><br>
+               
+              <button type="submit" id="btn">Add</button>
+
+   </form>
+
+</div>

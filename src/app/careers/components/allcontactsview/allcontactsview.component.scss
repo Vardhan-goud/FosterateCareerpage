@@ -1,0 +1,71 @@
+
+$cursortype:pointer;
+
+$sizing:border-box;
+
+
+
+
+.contact_heading
+{
+    color:black;
+    font-weight:600;
+    font-size:17px;
+    margin:27px 0 15px 36px;
+}
+
+
+#contacts-block
+{
+    
+    padding:0;  
+    width:318px;
+    margin:17px 0px 0px 36px;
+    border-top:1px solid rgb(221,221,211);
+    border-left:1px solid rgb(221,221,211);
+    border-right:1px solid rgb(221,221,211);
+
+
+    ul
+    {
+    padding:9px 0px 0px 22px;
+    margin:0;
+    height:100px;
+    list-style: none;
+    box-sizing:$sizing;
+    border-bottom:1px solid rgb(221,221,211);
+
+
+
+       
+   }
+
+}
+
+
+
+
+
+
+
+
+
+#contact-name
+{
+    font-size:18px;  
+}
+
+
+.contact_details:hover
+{
+    cursor:$cursortype;
+}
+
+
+ul.active_contact
+{
+    background-color:rgb(207,231,243);;
+}
+
+
+

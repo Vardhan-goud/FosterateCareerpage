@@ -1,0 +1,60 @@
+
+$sizing:border-box;
+$nodecoration:none;
+
+
+
+:host
+{
+    margin:0px;
+    padding:0px;
+}
+
+.nav-bar{
+    list-style-type: $nodecoration;
+    margin: 0px;
+    padding: 0px;
+    background-color:rgb(51,51,51);
+    color: white;
+    height:40px;
+  
+    li{
+      display: inline-block;
+      height:40px; 
+    }
+    
+   
+  }
+  .nav-link{
+    display: inline-block;
+    text-decoration:$nodecoration;
+    box-sizing: $sizing;
+    height:100%;
+    width:84px;
+    font-size: 15px;
+    font-weight:700;
+    cursor: pointer;
+    color: white;
+    padding:8px 0 0 20px;
+    margin:0 0  0 5px;
+    
+  }
+  
+  .active
+  {
+   
+    background-color:rgb(255,153,0);
+    color: black;
+    border-left:3px solid white;
+  }
+  
+  
+  .nav-img{
+  
+    float: right;
+    width: 25px;
+    margin:8px 22px 0px 0px;
+  
+  }
+  
+  

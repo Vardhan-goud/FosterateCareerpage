@@ -1,0 +1,112 @@
+
+$cursortype:pointer;
+$flex:inline-flex;
+$sizing:border-box;
+
+
+
+
+
+div.pop_up
+{
+
+    height:570px;
+    width:683px;
+    display:$flex;
+    box-shadow:#333333 0 0 30px;
+    margin:19px 0px 0px 76px;
+
+    input
+    {
+       display:$flex;
+       width:500px;
+       height:33px;
+       border:1px solid rgb(175,173,173);
+       border-radius: 5px;
+       margin:12px 0 16px 23px;
+    }
+
+
+    label
+    {
+    display:$flex;
+    font-weight:700;
+    padding:0;
+    margin:0 0 0 23px;
+    }
+
+
+    button
+    {
+
+    height:40px;
+    width:130px;
+    background-color: #27A746;
+    border-width:0px;
+    border-radius:5px;
+    font-size: 16px;
+    text-align:center;
+    box-sizing:$sizing;
+    padding-top:6px;
+    cursor:$cursortype;
+    position:relative;
+    left:530px;
+
+    }
+
+
+
+    span.imp
+     {
+    color:red;
+    position:relative;
+    left:6px;
+     }
+
+
+     
+}
+
+
+
+
+
+
+
+
+
+
+#mobile,#landline
+{
+    width:240px;
+}
+
+
+#landline,#landlinelabel
+{
+    margin-left:4px;
+}
+
+
+#landlinecontainer,#mobilecontainer
+{
+   display:inline-block;
+}
+
+#landlinecontainer
+{
+    margin-left:4px;
+}
+
+#namelabel
+{
+    margin-top:32px;
+}
+
+#address
+{
+    height:80px;
+}
+
+
+
