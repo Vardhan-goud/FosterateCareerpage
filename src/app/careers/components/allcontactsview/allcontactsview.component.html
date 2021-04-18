@@ -1,17 +1,11 @@
-   
-        <h3 class="contact_heading">
-            CONTACTS
-    </h3>
-        
-    <div id="contacts-block" >
-            
-            <ul *ngFor="let contact of allContacts" 
-                 [ngClass]="{'contact_details':true, 'active_contact':(contact.id==activeContactId)}"  
-                 (click)="showid(contact.id)">
-                                   <li id="contact-name">{{contact.name}}</li>
-                                   <li id='phone-number'>{{contact.mobile}}</li>
-                                    <li id='mail-id'>{{contact.email}}</li>
-            </ul>
-        
-    </div>
-   
+<h3 class="contact-heading">CONTACTS</h3>
+
+<div  class="p-0 contacts-block">
+  <div class="list-group rounded-0" *ngFor="let contact of allContacts">
+    <a [routerLink]="['/home', contact.id]" routerLinkActive="active-contact">
+      <li id="contact-name">{{ contact.name }}</li>
+      <li id="phone-number">{{ contact.mobile }}</li>
+      <li id="mail-id">{{ contact.email }}</li>
+    </a>
+  </div>
+</div>

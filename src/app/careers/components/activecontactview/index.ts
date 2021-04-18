@@ -1,1 +1,1 @@
-export  * from './activecontactview.component';
+export  * from './activeContactView.component';

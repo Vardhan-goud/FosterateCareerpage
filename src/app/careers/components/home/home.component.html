@@ -1,57 +1,32 @@
+<div class="row m-0" *ngIf="!this.isEmpty">
+  <div class="col-sm-2">
+    <app-allcontactsview ></app-allcontactsview>
+  </div>
 
+  <div class="col-sm-4">
+    <app-activecontactview ></app-activecontactview>
 
+  </div>
 
-<div class="row">
-
-
-    <div class="col-sm-2">
-
-        <app-allcontactsview *ngIf="!this.isempty"></app-allcontactsview>
-
+  <div class="col-sm-6">
+    <div id="actions">
+      <span id="edit_action" (click)="updateActiveContact()">
+        <img src="../../../../assets/images/Edit-icon.png" alt="" height="17px" />
+        <span id="edit">EDIT</span>
+      </span>
+      <span id="delete_action" (click)="deleteActiveContact()">
+        <img src="../../../../assets/images/delete2.png" alt="" />
+        <span id="delete">DELETE</span>
+      </span>
     </div>
-
-
-    <div class="col-sm-4">
-        
-        <app-contactsform
-                  *ngIf="this.showEditForm" 
-                  [showeditform]="showEditForm" 
-                  (showeditformChange)="showEditForm=$event" 
-                   [displayicons]="displayicons" 
-                   (displayiconsChange)="displayicons=$displayicons">
-        </app-contactsform>
-
-       <app-activecontactview 
-                  *ngIf="!this.showEditForm && !this.isempty ">
-        </app-activecontactview>
-
-       <div *ngIf="this.isempty" >
-                <p style="text-align:center"><img  class="empty-img" src="./assets/search1.png" alt=""></p>       
-       </div>
-
-    </div>
-
-    <div class="col-sm-6" 
-            *ngIf="!this.isempty && !showEditForm">
-
-        <div class="actions" id="actions">
-
-            <span href="" id="edit_action" (click)="editfunc()">
-                <img src="./assets/Edit-icon.png" alt="" height="17px">
-                <span id="edit">EDIT</span>
-            </span> 
-
-             <span href="" id="delete_action" (click)="deletefunc()">
-                 <img src="./assets/delete2.png" alt="">
-                 <span id="delete">DELETE</span>
-             </span>
-
-         </div>
-
-         
-    </div>
-    
+  </div>
 </div>
 
 
-
+<div  class="row m-0" *ngIf="this.isEmpty">
+  <div class="col-4"></div>
+  <div id="not_found" class="col-4">
+      <img src="assets/images/search1.png">
+      <h2>NO CONTACTS FOUND </h2>
+  </div>
+</div>

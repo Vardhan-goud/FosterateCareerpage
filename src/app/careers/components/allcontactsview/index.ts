@@ -1,1 +1,1 @@
-export * from './allcontactsview.component';
+export * from './allContactsView.component';
