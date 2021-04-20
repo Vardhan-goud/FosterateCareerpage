@@ -6,7 +6,7 @@ import {
   AbstractControl,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ContactsdataService } from '../../services';
+import { ContactsDataService } from '../../services';
 import { Contact } from '../../model';
 
 @Component({
@@ -14,7 +14,7 @@ import { Contact } from '../../model';
   templateUrl: './contactsform.component.html',
   styleUrls: ['./contactsform.component.scss'],
 })
-export class ContactsformComponent implements OnInit {
+export class ContactsFormComponent implements OnInit {
   showeditform: boolean;
   contactform: FormGroup;
   formdata: Contact;
@@ -45,7 +45,7 @@ export class ContactsformComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private contactsDataService: ContactsdataService,
+    private ContactsDataService: ContactsDataService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
@@ -62,7 +62,7 @@ export class ContactsformComponent implements OnInit {
 
     
    
-    this.activeContactData = this.contactsDataService.sendActiveContact(this.activeContactId);
+    this.activeContactData = this.ContactsDataService.sendActiveContact(this.activeContactId).contact;
     this.contactform = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -94,7 +94,7 @@ export class ContactsformComponent implements OnInit {
   submitForm():void {
     if (this.contactform.valid) {
       if (this.showeditform == true) {
-        this.contactsDataService.updateActiveContact(
+        this.ContactsDataService.updateActiveContact(
           this.activeContactId,
           this.contactform.value
         );
@@ -102,13 +102,13 @@ export class ContactsformComponent implements OnInit {
         this.router.navigateByUrl('/home/' + this.activeContactId);
       } else {
         this.formdata = this.contactform.value;
-        if (this.contactsDataService.sendLengthOfArray() == 0) {
+        if (this.ContactsDataService.allContacts.length == 0) {
           this.formdata['id'] = 1;
         } else {
           this.formdata['id'] =
-            this.contactsDataService.allContacts[this.contactsDataService.sendLengthOfArray()- 1].id + 1;
+            this.ContactsDataService.allContacts[this.ContactsDataService.allContacts.length- 1].id + 1;
         }
-        this.contactsDataService.addNewContact(this.formdata);
+        this.ContactsDataService.addNewContact(this.formdata);
         this.changeRoute();
       }
     } else {

@@ -1,1 +1,1 @@
-export * from './contactdefinition.model';
+export * from './contact.model';

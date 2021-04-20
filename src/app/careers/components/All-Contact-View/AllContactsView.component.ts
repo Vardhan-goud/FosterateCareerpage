@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ContactsdataService } from '../../services';
+import { ContactsDataService } from '../../services';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Contact } from '../../model';
@@ -9,30 +9,30 @@ import { Contact } from '../../model';
   templateUrl: './allcontactsview.component.html',
   styleUrls: ['./allcontactsview.component.scss'],
 })
-export class AllcontactsviewComponent implements OnInit {
+export class AllContactsViewComponent implements OnInit {
   allContacts: Contact[];
   activeContactId: number;
-  activehref: string = '';
+  activeUrl: string = '';
 
   constructor(
-    private contactsDataService: ContactsdataService,
+    private ContactsDataService: ContactsDataService,
     private router: Router,
     private activeRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    if (this.contactsDataService.sendAllContacts()['status'] == true) {
-      this.allContacts = this.contactsDataService.sendAllContacts()[ 'contactlist' ];
+    if (this.ContactsDataService.sendAllContacts()['status'] == true) {
+      this.allContacts = this.ContactsDataService.sendAllContacts()[ 'contactlist' ];
     }
 
-    this.activehref = this.router.url;
+    this.activeUrl = this.router.url;
 
     this.activeRoute.params.subscribe((params) => {
       this.activeContactId = parseInt(params['id']);
 
       if (isNaN(this.activeContactId)) {
-        this.activeContactId = this.contactsDataService.allContacts[0]['id'];
-        if (this.activehref == '/add') {
+        this.activeContactId = this.ContactsDataService.allContacts[0]['id'];
+        if (this.activeUrl == '/add') {
           this.activeContactId = 0;
         }
       }

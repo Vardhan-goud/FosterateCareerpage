@@ -3,16 +3,16 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CareerRoutingModule } from './career-routing.module';
-import { ContactsdataService } from './services';
-import { HomeComponent, AddnewcontactComponent, AllcontactsviewComponent, ContactsformComponent, ActivecontactviewComponent } from './components';
+import { HomeComponent, AddNewContactComponent, AllContactsViewComponent, ContactsFormComponent, ActiveContactViewComponent } from './components';
+
 
 @NgModule({
-  declarations: [ HomeComponent, AllcontactsviewComponent, ActivecontactviewComponent, ContactsformComponent, AddnewcontactComponent,
+  declarations: [ HomeComponent, AddNewContactComponent, AllContactsViewComponent, ContactsFormComponent, ActiveContactViewComponent
   ],
   imports: [ CommonModule, CareerRoutingModule,
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [ContactsdataService],
+  providers: [],
 })
 export class CareerModule {}

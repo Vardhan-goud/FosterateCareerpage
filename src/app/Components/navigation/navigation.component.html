@@ -1,17 +1,8 @@
-<ul class="nav-bar">
-  <li>
-    <a class="nav-link" routerLink="home" routerLinkActive="active" id="home"
-      >HOME</a
-    >
+<ul class="navbar-nav d-flex flex-row">
+  <li class="nav-link"><a routerLink="/home" routerLinkActive="active text-dark" class="m-0">HOME</a></li>
+  <li class="nav-link"><a routerLink="/add" routerLinkActive="active text-dark" class="m-0">+ADD</a></li>
+  <li class="blog"><img src="assets/images/blog-icon.png" height="24px" alt="blog icon.img" >
   </li>
-
-  <li>
-    <a class="nav-link" routerLink="add" routerLinkActive="active" id="add"
-      >+ADD</a
-    >
-  </li>
-
-  <img src="assets/images/blog-icon.png" alt="" class="nav-img" />
 </ul>
 
 <router-outlet></router-outlet>

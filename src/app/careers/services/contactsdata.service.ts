@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Contact } from '../model/contactdefinition.model';
+import { Contact } from '../model/contact.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ContactsdataService {
+export class ContactsDataService {
   constructor() {}
 
  
@@ -14,7 +14,7 @@ export class ContactsdataService {
 
   sendAllContacts(): { contactlist: Array<Contact>; status: boolean } {
     if (this.allContacts.length == 0) {
-      return { contactlist: this.allContacts, status: false };
+      return { contactlist: null, status: false };
     } else {
       return { contactlist: this.allContacts, status: true };
     }
@@ -28,14 +28,14 @@ export class ContactsdataService {
     
   }
 
-  sendActiveContact(activeId: number): Contact | null {
+  sendActiveContact(activeId: number):{ contact: Contact; status: boolean } {
     this.index = this.allContacts.findIndex(
       (contact) => contact.id == activeId
     );
     if (this.index == -1) {
-      return null;
+      return {contact : null, status : false};
     }
-    return this.allContacts[this.index];
+    return {contact :this.allContacts[this.index],status : true};
   }
 
   deleteActiveContact(activeId: number): void {
@@ -53,7 +53,4 @@ export class ContactsdataService {
     this.allContacts[this.index].id = activeId;
   }
 
-  sendLengthOfArray(): number {
-    return this.allContacts.length;
-  }
 }

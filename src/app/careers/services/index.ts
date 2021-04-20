@@ -1,1 +1,1 @@
-export * from './contactsdata.service';
+export * from './ContactsData.service';
