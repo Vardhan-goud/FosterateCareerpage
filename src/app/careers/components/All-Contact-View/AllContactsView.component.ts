@@ -32,9 +32,6 @@ export class AllContactsViewComponent implements OnInit {
 
       if (isNaN(this.activeContactId)) {
         this.activeContactId = this.ContactsDataService.allContacts[0]['id'];
-        if (this.activeUrl == '/add') {
-          this.activeContactId = 0;
-        }
       }
     });
   }

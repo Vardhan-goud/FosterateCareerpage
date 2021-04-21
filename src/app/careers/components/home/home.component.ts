@@ -10,6 +10,7 @@ import { ContactsDataService } from '../../services';
 export class HomeComponent implements OnInit {
   activeContactId: number;
   isEmpty: boolean = false;
+  isInvalidId:boolean=false;
 
   constructor(
     private contactsDataService: ContactsDataService,
@@ -23,12 +24,22 @@ export class HomeComponent implements OnInit {
 
       if (isNaN(this.activeContactId)) {
         if (this.contactsDataService.allContacts.length == 0) {
-          this.deleteActiveContact(1);
-        } else {
+          
+          this.isEmpty = true;
+        } 
+        else {
           this.activeContactId = this.contactsDataService.allContacts[0].id;
           this.router.navigateByUrl('/home/' + this.activeContactId);
         }
+        
       }
+    else
+    {
+      if(this.contactsDataService.sendActiveContact(this.activeContactId).status==false)
+      {
+        this.isInvalidId=true;
+      }
+    }
     });
   }
 
@@ -36,11 +47,7 @@ export class HomeComponent implements OnInit {
     this.router.navigateByUrl('home/' + this.activeContactId + '/edit');
   }
 
-  deleteActiveContact(val?: number): void {
-    if (val == 1) {
-      this.isEmpty = true;
-      this.router.navigateByUrl('/home');
-    }
+  deleteActiveContact(): void {
     this.contactsDataService.deleteActiveContact(this.activeContactId);
     if (this.contactsDataService.allContacts.length >= 1) {
       this.router.navigateByUrl(

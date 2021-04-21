@@ -5,31 +5,33 @@
   padding: 0px;
 }
 
-.navbar-nav{
-  margin-top: 0px;
-  font-size: 13px;
-  background-color: black;
-  height: 40px;
-  .nav-link {
-    font-weight: 700;
-    text-decoration: none;
-    margin: 0 0 0 7px;
-  }
-  
+.navbar
+{
+   height:40px;
+   background-color: black;
+   box-sizing:border-box;
 
-  .active {
-    font-weight: 800;
-    background-color: #ff9900;
-    border-left: 3px solid white;
-  }
-  .blog {
-    margin: 8px 15px auto auto;
-  }
+   .nav-link
+   {
+     box-sizing: border-box;
+     text-decoration: none;
+     height:40px;
+     
+     a
+     {
+       box-sizing: border-box;
+       text-decoration: none;
+       color:white;
+       display:inline-flex;
+       font-weight: 700;
+       height:40px;
+       padding:20px 13px 0 13px;
+     }
+
+   }
 }
 
-.nav-link a {
-  color: white;
-  text-decoration: none;
-  padding: 10px 13px 14px 13px;
-  margin: auto auto 0 4px;
+.active {
+  background-color: #ff9900;
+  border-left: 3px solid white;
 }

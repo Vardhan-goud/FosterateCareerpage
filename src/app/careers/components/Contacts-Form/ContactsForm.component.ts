@@ -23,31 +23,32 @@ export class ContactsFormComponent implements OnInit {
  
 
   validationmessages = {
-    name: {
-      required: ' (name is  required)',
+    'name': {
+      'required': ' (name is  required)',
     },
-    email: {
-      required: ' (email is required)',
-      email: ' (invalid email)',
+    'email': {
+      'required': ' (email is required)',
+      'emaildomain':'(invalid email)' 
     },
-    mobile: {
-      required: ' (ph.no is required)',
-      min: ' (enter valid ph.no)',
-      max: ' (enter valid ph.no)',
+    'mobile': {
+      'required': ' (ph.no is required)',
+      'min': ' (enter valid ph.no)',
+      'max': ' (enter valid ph.no)',
     },
   };
 
   formerrors = {
-    name: '',
-    email: '',
-    mobile: '',
+    'name': '',
+    'email': '',
+    'mobile': '',
   };
 
   constructor(
     private formBuilder: FormBuilder,
     private ContactsDataService: ContactsDataService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+
   ) {}
 
   ngOnInit(): void {
@@ -65,7 +66,7 @@ export class ContactsFormComponent implements OnInit {
     this.activeContactData = this.ContactsDataService.sendActiveContact(this.activeContactId).contact;
     this.contactform = this.formBuilder.group({
       name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required,emaildomain]],
       mobile: [
         '',
         [
@@ -79,6 +80,29 @@ export class ContactsFormComponent implements OnInit {
       address: [''],
     });
 
+    function emaildomain(control:AbstractControl):{[key:string]:any}|null
+    {
+        const email:string=control.value;
+        const domain:string =email.substring(email.lastIndexOf('.')+1);
+        const isProper:boolean=email.includes('@')
+        if(!isProper)
+        {
+          return {'emaildomain':true};
+        }
+        if(domain=='in' || domain=="com" || domain=='org'|| email=="")
+        {
+          return null;
+        }
+        else{
+          return {'emaildomain':true};
+        }
+    }
+
+    this.contactform.valueChanges.subscribe((value:string)=>
+     {
+      this.CheckValid(this.contactform);
+     })
+
     if (this.showeditform == true) {
       this.contactform.setValue({
         name: this.activeContactData.name,
@@ -90,6 +114,12 @@ export class ContactsFormComponent implements OnInit {
       });
     }
   }
+  
+
+
+  
+
+
 
   submitForm():void {
     if (this.contactform.valid) {
@@ -120,6 +150,9 @@ export class ContactsFormComponent implements OnInit {
     this.router.navigateByUrl('/home/' + this.formdata['id']);
   }
 
+
+
+
   CheckValid(
     group: FormGroup = this.contactform,
     submittedempty: boolean = false
@@ -142,6 +175,11 @@ export class ContactsFormComponent implements OnInit {
           }
         }
       }
+      
     });
   }
 }
+
+
+
+

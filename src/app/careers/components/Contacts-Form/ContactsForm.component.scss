@@ -15,8 +15,10 @@ div.pop_up {
     border-radius: 5px;
     margin: 12px 0 16px 23px;
   }
+ 
 
   label {
+    
     display: $flex;
     font-weight: 700;
     margin: 0 0 0 23px;
@@ -69,4 +71,12 @@ div.pop_up {
 
 #address {
   height: 80px;
+}
+
+textarea
+{
+  display: $flex;
+  border: 1px solid rgb(175, 173, 173);
+  border-radius: 5px;
+  margin: 12px 0 16px 23px;
 }
