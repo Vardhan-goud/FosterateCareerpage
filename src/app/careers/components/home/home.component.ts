@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
       this.activeContactId = parseInt(params['id']);
 
       if (isNaN(this.activeContactId)) {
-        if (this.contactsDataService.allContacts.length == 0) {
+        if (!this.contactsDataService.sendAllContacts().status) {
           
           this.isEmpty = true;
         } 
@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
       }
     else
     {
-      if(this.contactsDataService.sendActiveContact(this.activeContactId).status==false)
+      if(!this.contactsDataService.sendActiveContact(this.activeContactId).status)
       {
         this.isInvalidId=true;
       }
@@ -49,12 +49,12 @@ export class HomeComponent implements OnInit {
 
   deleteActiveContact(): void {
     this.contactsDataService.deleteActiveContact(this.activeContactId);
-    if (this.contactsDataService.allContacts.length >= 1) {
+    if (this.contactsDataService.sendAllContacts().status) {
       this.router.navigateByUrl(
         '/home/' + this.contactsDataService.allContacts[0].id
       );
     }
-    if (this.contactsDataService.allContacts.length == 0) {
+    if (!this.contactsDataService.sendAllContacts().status) {
       this.isEmpty = true;
       this.router.navigateByUrl('/home');
     }

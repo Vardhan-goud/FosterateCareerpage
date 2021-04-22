@@ -6,11 +6,10 @@ import { Contact } from '../model/contact.model';
 })
 export class ContactsDataService {
   constructor() {}
-
- 
-
+  
   allContacts: Contact[] = [];
   index: number;
+  activeContact:Contact;
 
   sendAllContacts(): { contactlist: Array<Contact>; status: boolean } {
     if (this.allContacts.length == 0) {
@@ -29,13 +28,13 @@ export class ContactsDataService {
   }
 
   sendActiveContact(activeId: number):{ contact: Contact; status: boolean } {
-    this.index = this.allContacts.findIndex(
+    this.activeContact = this.allContacts.find(
       (contact) => contact.id == activeId
     );
-    if (this.index == -1) {
+    if (this.activeContact == undefined) {
       return {contact : null, status : false};
     }
-    return {contact :this.allContacts[this.index],status : true};
+    return {contact :this.activeContact,status : true};
   }
 
   deleteActiveContact(activeId: number): void {

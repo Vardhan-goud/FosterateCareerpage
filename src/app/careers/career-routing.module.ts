@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { AddNewContactComponent, HomeComponent } from './components';
 
 const routes: Routes = [
@@ -9,7 +8,6 @@ const routes: Routes = [
   { path: 'home/:id', component: HomeComponent },
   { path: 'home/:id/edit', component: AddNewContactComponent},
   { path: 'add', component: AddNewContactComponent },
-  
 ];
 
 @NgModule({
