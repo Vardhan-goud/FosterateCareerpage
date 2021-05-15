@@ -18,14 +18,13 @@
 
   a {
     text-decoration: none;
-    padding: 9px 0px 0px 22px;
     margin: 0;
     height: 100px;
     box-sizing: $sizing;
     border-bottom: 1px solid rgb(221, 221, 211);
 
     li {
-      color: black;
+      color:#333333;
       list-style-type: none;
       box-sizing: border-box;
       padding-left: 12px;
@@ -34,11 +33,11 @@
 }
 
 #contact-name {
-  font-size: 18px;
+  font-size: 20px;
 }
 
 
 
-.active-contact {
+a.active-contact {
   background-color: rgb(207, 231, 243);
 }
