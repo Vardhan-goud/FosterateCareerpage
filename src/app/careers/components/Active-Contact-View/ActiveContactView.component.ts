@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { Contact } from '../../model';
 import { ContactsDataService } from '../../services';
@@ -9,21 +10,32 @@ import { ContactsDataService } from '../../services';
   styleUrls: ['./activecontactview.component.scss'],
 })
 export class ActiveContactViewComponent implements OnInit {
-  activeContactId: number;
-  activeContactData: Contact;
+  activeContactId: string;
+  activeContactData:Contact;
+  allContacts:Contact[]=[];
+  loading:boolean=true;
   constructor(
     private ContactsDataService: ContactsDataService,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private firestore:AngularFirestore,
   ) {}
 
-  ngOnInit(): void {
-    this.activeContactData = this.ContactsDataService.allContacts[0];
-    this.activeRoute.params.subscribe((params) => {
-      this.activeContactId = parseInt(params['id']);
-      if (isNaN(this.activeContactId)) {
-        this.activeContactId = 1;
-      }
-      this.activeContactData = this.ContactsDataService.sendActiveContact( this.activeContactId ).contact;
-    });
-  }
+  ngOnInit(): void 
+{
+  this.activeRoute.params.subscribe((params) => {
+  this.activeContactId = params['id'];
+    if(this.activeContactId!=undefined)
+    {
+      this.ContactsDataService.getContact((this.activeContactId)).subscribe((data)=>
+      {
+      if(data.Status)
+      {
+        this.activeContactData=data.activeContact;
+        this.loading=false;
+      }  
+      })
+    }
+  })
+}
+
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Contact } from '../../model';
 import { ContactsDataService } from '../../services';
 
 @Component({
@@ -8,55 +10,61 @@ import { ContactsDataService } from '../../services';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  activeContactId: number;
-  isEmpty: boolean = false;
-  isInvalidId:boolean=false;
+  activeContactId: string;
+  isEmpty: boolean;
+  bool:boolean=false;
+  allContacts:Contact[]=[];
+  activeContactData:Contact;
+  contact:Contact;
+  currentPath:string;
+  loading:boolean=true;
 
   constructor(
-    private contactsDataService: ContactsDataService,
+    private ContactsDataService: ContactsDataService,
     private activeRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private firestore:AngularFirestore
   ) {}
 
   ngOnInit(): void {
-    this.activeRoute.params.subscribe((params) => {
-      this.activeContactId = parseInt(params['id']);
+    
 
-      if (isNaN(this.activeContactId)) {
-        if (!this.contactsDataService.sendAllContacts().status) {
-          
-          this.isEmpty = true;
-        } 
-        else {
-          this.activeContactId = this.contactsDataService.allContacts[0].id;
-          this.router.navigateByUrl('/home/' + this.activeContactId);
-        }
-        
-      }
-    else
-    {
-      if(!this.contactsDataService.sendActiveContact(this.activeContactId).status)
-      {
-        this.isInvalidId=true;
-      }
+ this.activeRoute.params.subscribe((params)=>
+ {
+  this.ContactsDataService.getContacts().subscribe((data) => { 
+  if(data.Status)
+  {
+    this.loading=false;
+    this.allContacts=data.allContacts;
+    this.isEmpty=false;
+    this.currentPath = this.router.url;
+    if (this.currentPath == '/home') {
+      this.router.navigateByUrl('/home/' + this.allContacts[0]['id']);
     }
-    });
   }
+  else{
+    this.loading=false;
+    this.isEmpty=true;
+  } 
+  }); 
+})
+}
 
   updateActiveContact(): void {
+    this.activeRoute.params.subscribe((params)=>
+    {
+       this.activeContactId=params['id'];
+    })
     this.router.navigateByUrl('home/' + this.activeContactId + '/edit');
   }
 
   deleteActiveContact(): void {
-    this.contactsDataService.deleteActiveContact(this.activeContactId);
-    if (this.contactsDataService.sendAllContacts().status) {
-      this.router.navigateByUrl(
-        '/home/' + this.contactsDataService.allContacts[0].id
-      );
-    }
-    if (!this.contactsDataService.sendAllContacts().status) {
-      this.isEmpty = true;
-      this.router.navigateByUrl('/home');
-    }
-  }
+    this.activeRoute.params.subscribe((params)=>
+    {
+       this.activeContactId=params['id'];
+    })
+    this.ContactsDataService.deleteActiveContact(this.activeContactId);   
+
+    this.router.navigateByUrl('/home'); 
+} 
 }

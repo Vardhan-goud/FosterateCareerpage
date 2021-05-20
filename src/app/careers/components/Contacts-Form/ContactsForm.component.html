@@ -1,4 +1,4 @@
-<div class="pop_up">
+<div class="pop_up" *ngIf='!loading'>
   <form action="" id="frm" [formGroup]="contactform" (ngSubmit)="submitForm()">
     <label for="Name" id="namelabel" >Name
       <span class="imp" >*
@@ -40,6 +40,18 @@
     <label for="address" class="p-0">Address</label><br />
     <textarea id="address" formControlName="address"  rows="4" cols="69"></textarea><br />
 
-    <button type="submit" id="btn">Add</button>
+    <button type="submit" id="btn">{{submitText}}</button>
   </form>
+</div>
+
+
+<div *ngIf="loading">
+  <div class="row mt-5 ms-3">
+    <div class="col-md-12">
+      <div class="item">
+        <ngx-skeleton-loader count="1" [theme]="{ 'border-radius': '0', height: '16px' }"></ngx-skeleton-loader>
+        <ngx-skeleton-loader count="5" [theme]="{ 'border-radius': '0', height: '50px' }"></ngx-skeleton-loader>
+      </div>
+    </div>
+  </div>
 </div>

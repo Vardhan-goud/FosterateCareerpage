@@ -1,20 +1,33 @@
-<div class="display_contact">
+<div class="display_contact" *ngIf="!loading">
   <h3 id="d-name">{{ activeContactData.name }}</h3>
   <ul class="m-0 p-0">
     <li class="mt-3">
-      Email: <span id="d-email">{{ activeContactData.email }}</span>
+      Email: <span id="d-email" class='d-inline-block'>{{ activeContactData.email }}</span>
     </li>
     <li class="mt-2">
-      Mobile:<span id="d-mobile">{{ activeContactData.mobile }}</span>
+      Mobile: <span id="d-mobile" class='d-inline-block'>{{ activeContactData.mobile }}</span>
     </li>
     <li class="mt-2">
-      Landline:<span id="d-landline">{{ activeContactData.landline }}</span>
+      Landline: <span id="d-landline" class='d-inline-block'>{{ activeContactData.landline }}</span>
     </li>
     <li class="mt-2">
-      Website:<span id="d-website">{{ activeContactData.website }}</span>
+      Website: <span id="d-website" class='d-inline-block '>{{ activeContactData.website }}</span>
     </li>
     <li class="mt-2">
-      Address: <span id="d-address">{{ activeContactData.address }}</span>
+      Address: <pre id="d-address" class='d-inline-flex'>{{ activeContactData.address }}</pre>
     </li>
   </ul>
+</div> 
+
+
+<div *ngIf="loading">
+  <div class="row mt-5 ms-3">
+    <div class="col-md-12">
+      <div class="item">
+        <ngx-skeleton-loader count="1" [theme]="{ 'border-radius': '0', height: '16px' }"></ngx-skeleton-loader>
+        <ngx-skeleton-loader count="5" [theme]="{ 'border-radius': '0', height: '50px' }"></ngx-skeleton-loader>
+      </div>
+    </div>
+  </div>
 </div>
+

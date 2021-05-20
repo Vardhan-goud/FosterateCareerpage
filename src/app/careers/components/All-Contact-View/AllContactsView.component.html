@@ -1,11 +1,23 @@
-<h3 class="contact-heading">CONTACTS</h3>
+<h3 class="contact-heading" *ngIf="!loading">CONTACTS</h3>
 
-<div  class="p-0 contacts-block">
+<div  class="p-0 contacts-block" *ngIf="!loading">
   <div class="list-group rounded-0" *ngFor="let contact of allContacts">
-    <a [routerLink]="['/home', contact.id]" routerLinkActive="active-contact">
+    <a [routerLink]="['/home', contact.id]" routerLinkActive="active-contact" class="ps-1 pt-1">
       <li id="contact-name">{{ contact.name }}</li>
       <li id="phone-number">{{ contact.mobile }}</li>
       <li id="mail-id">{{ contact.email }}</li>
     </a>
+  </div>
+</div>
+
+
+<div *ngIf="loading">
+  <div class="row mt-5 ms-3">
+    <div class="col-md-12">
+      <div class="item">
+        <ngx-skeleton-loader count="1" [theme]="{ 'border-radius': '0', height: '16px' }"></ngx-skeleton-loader>
+        <ngx-skeleton-loader count="5" [theme]="{ 'border-radius': '0', height: '50px' }"></ngx-skeleton-loader>
+      </div>
+    </div>
   </div>
 </div>
